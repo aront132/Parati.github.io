@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Felicidades, Bachiller!</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            color: #1a2a44;
+            overflow: auto;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.97);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            max-width: 90%;
+            width: 700px;
+            text-align: center;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+        h1 {
+            font-size: 2.8em;
+            color: #2d6a4f;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #1a936f, #88d498);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        .message {
+            display: none;
+            font-size: 1.3em;
+            line-height: 1.7;
+            color: #1a2a44;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            animation: slideIn 0.6s ease-in-out;
+        }
+        .message img {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+        #certificateBtn {
+            display: none;
+        }
+        #nextBtn1, #nextBtn2 {
+            display: none;
+        }
+        #certificate {
+            display: none;
+            margin-top: 25px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+        }
+        canvas {
+            border: 3px solid #2d6a4f;
+            border-radius: 15px;
+            width: 100%;
+            height: auto;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            .message {
+                font-size: 1.1em;
+            }
+            .container {
+                padding: 15px;
+                width: 90%;
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" loop>
+        <source src="audio.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <div class="container">
+        <h1>¡Hola, Leydy :)!</h1>
+        <button onclick="showMessage()">Abrir Mensaje</button>
+        <div id="message1" class="message">
+            <p>¡Felicidades, Leydy! Has logrado algo increíble al estar en casi las finales, con tanto esfuerzo y dedicación. Cada paso que diste, cada noche de estudio, y cada desafío superado te han traído hasta este momento. ¡Eres una inspiración! Aquí va un abrazo enorme para celebrar tu fuerza y valentía. 🌟</p>
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyZzZ0MG92NTNmMmpyajJrcjVhN29qcmdpdW14cjVldHB0amJkamwxMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dPynFzl9CL01W/giphy.gif" alt="Abrazo cálido">
+        </div>
+        <button id="nextBtn1" onclick="showNextMessage(1)">Siguiente</button>
+        <div id="message2" class="message">
+            <p>Este logro es solo el comienzo, Leydy. Tienes un futuro lleno de posibilidades brillantes, y cada sueño que persigas está a tu alcance. Nunca dejes de sonreír, porque tu alegría ilumina todo a tu alrededor. ¡Recuerda lo importante que eres!</p>
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUybjU3NTQ4NWZnbjl1M3g1eHZzNHA0cjk5N2tkNWtrcGg0bGFyZ2sybiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Gn1V6KVwBHRLBEKK0o/giphy.gif" alt="Abrazo emotivo">
+        </div>
+        <button id="nextBtn2" onclick="showNextMessage(2)">Siguiente</button>
+        <div id="message3" class="message">
+            <p>Leydy, eres la mejor persona del mundo, y este certificado es un pequeño reconocimiento a tu grandeza. Sigue conquistando el mundo con tu pasión y determinación. ¡Estoy tan orgullosos de ti! Aquí va un ramo de flores para celebrar lo fuerte que eres uu.</p>
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUyZW1ob3AyaDMzc3JxdGRmN2RyZXh5ZXYzbHV0d2U2MXh5NXFoOW9leCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Ve64BeE0n3PmPCO5B8/giphy.gif" alt="Ramo de flores">
+        </div>
+        <button id="certificateBtn" onclick="generateCertificate()">Obtener Certificado</button>
+        <canvas id="certificate"></canvas>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById('message1').style.display = 'block';
+            document.getElementById('nextBtn1').style.display = 'inline-block';
+            // Intentar reproducir el audio tras la primera interacción
+            const audio = document.getElementById('backgroundMusic');
+            audio.play().catch(function(error) {
+                console.log('Error al intentar reproducir el audio:', error);
+            });
+        }
+
+        function showNextMessage(step) {
+            if (step === 1) {
+                document.getElementById('message1').style.display = 'none';
+                document.getElementById('nextBtn1').style.display = 'none';
+                document.getElementById('message2').style.display = 'block';
+                document.getElementById('nextBtn2').style.display = 'inline-block';
+            } else if (step === 2) {
+                document.getElementById('message2').style.display = 'none';
+                document.getElementById('nextBtn2').style.display = 'none';
+                document.getElementById('message3').style.display = 'block';
+                document.getElementById('certificateBtn').style.display = 'inline-block';
+            }
+        }
+
+        function generateCertificate() {
+            const canvas = document.getElementById('certificate');
+            const container = document.querySelector('.container');
+            const canvasWidth = Math.min(container.offsetWidth - 40, 500);
+            const canvasHeight = canvasWidth * 0.7;
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            canvas.style.display = 'block';
+            const ctx = canvas.getContext('2d');
+
+            // Escalar el contexto para pantallas retina
+            const scale = window.devicePixelRatio || 1;
+            canvas.width = canvasWidth * scale;
+            canvas.height = canvasHeight * scale;
+            ctx.scale(scale, scale);
+
+            // Fondo del certificado con gradiente
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvasHeight);
+            gradient.addColorStop(0, '#f7f1e3');
+            gradient.addColorStop(1, '#e0c3fc');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+            // Borde decorativo doble
+            ctx.strokeStyle = '#2d6a4f';
+            ctx.lineWidth = 10;
+            ctx.strokeRect(25, 25, canvasWidth - 50, canvasHeight - 50);
+            ctx.strokeStyle = '#88d498';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(35, 35, canvasWidth - 70, canvasHeight - 70);
+
+            // Detalles decorativos (líneas ornamentales)
+            ctx.strokeStyle = '#d4a017';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(50, 50);
+            ctx.lineTo(120, 50);
+            ctx.moveTo(canvasWidth - 120, 50);
+            ctx.lineTo(canvasWidth - 50, 50);
+            ctx.moveTo(50, canvasHeight - 50);
+            ctx.lineTo(120, canvasHeight - 50);
+            ctx.moveTo(canvasWidth - 120, canvasHeight - 50);
+            ctx.lineTo(canvasWidth - 50, canvasHeight - 50);
+            ctx.stroke();
+
+            // Ajustar tamaño de fuente según el ancho del canvas
+            const baseFontSize = canvasWidth / 550;
+            const titleFontSize = 26 * baseFontSize;
+            const subtitleFontSize = 20 * baseFontSize;
+            const nameFontSize = 26 * baseFontSize;
+            const bodyFontSize = 18 * baseFontSize;
+            const footerFontSize = 16 * baseFontSize;
+
+            // Título en dos líneas
+            ctx.fillStyle = '#1a2a44';
+            ctx.font = `bold ${titleFontSize}px Georgia`;
+            ctx.textAlign = 'center';
+            ctx.fillText('Para la Mejor', canvasWidth / 2, 50);
+            ctx.fillText('Persona del Mundo', canvasWidth / 2, 80);
+
+            // Mensaje
+            ctx.font = `${subtitleFontSize}px Georgia`;
+            ctx.fillText('Otorgado a:', canvasWidth / 2, 130);
+            ctx.font = `bold ${nameFontSize}px Georgia`;
+            ctx.fillText('Leydy', canvasWidth / 2, 170);
+            ctx.font = `${bodyFontSize}px Georgia`;
+            ctx.fillText('Por haber llegado', canvasWidth / 2, 210);
+            ctx.fillText('hasta lo imposible', canvasWidth / 2, 240);
+            ctx.fillText('con dedicación y excelencia.', canvasWidth / 2, 270);
+
+            // Detalles
+            ctx.font = `italic ${footerFontSize}px Georgia`;
+            ctx.fillText('Otorgado el ' + new Date().toLocaleDateString(), canvasWidth / 2, canvasHeight - 60);
+            ctx.fillText('¡Felicidades por tu logro!', canvasWidth / 2, canvasHeight - 30);
+
+            // Descargar imagen
+            const link = document.createElement('a');
+            link.download = 'certificado_leydy.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>
